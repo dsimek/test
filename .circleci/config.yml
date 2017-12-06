@@ -17,7 +17,6 @@ jobs:
     working_directory: ~/repo
 
     steps:
+       - run: ssh root@lab-rat.eu
 
-      - run: git pull
-
-      - run: php satis/bin/satis build satis.json /public_html
+      
