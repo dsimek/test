@@ -28,4 +28,4 @@ jobs:
 
         - run: echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 
-        - run: ssh -tt {{ .Environment.LAB_USER }}@{{ .Environment.LAB_IP }} "cd /var/www/html/ && git pull && php artisan cache:clear"
+        - run: ssh -tt $LAB_USER@$LAB_IP "cd /var/www/html/ && git pull && php artisan cache:clear"
