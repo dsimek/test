@@ -21,11 +21,11 @@ jobs:
        	- eval $(ssh-agent -s)
     	- mkdir -p ~/.ssh
 
-    	- ssh-add <(echo "${LAB_SSH}")
+    	- ssh-add <(echo "{{ .Environment.LAB_SSH }}")
 
     	- echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 
-    	- ssh -tt ${LAB_USER}@${LAB_IP} "cd /var/www/html/ && git pull && php artisan cache:clear"
+    	- ssh -tt {{ .Environment.LAB_USER }}@{{ .Environment.LAB_IP }} "cd /var/www/html/ && git pull && php artisan cache:clear"
 
 
       
