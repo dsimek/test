@@ -17,14 +17,11 @@ jobs:
     working_directory: ~/repo
 
     steps:
-        - eval $(ssh-agent -s)
-        - mkdir -p ~/.ssh
+        - run: eval $(ssh-agent -s)
+        - run: mkdir -p ~/.ssh
 
-        - ssh-add <(echo "{{ .Environment.LAB_SSH }}")
+        - run: ssh-add <(echo "{{ .Environment.LAB_SSH }}")
 
-        - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+        - run: echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 
-        - ssh -tt {{ .Environment.LAB_USER }}@{{ .Environment.LAB_IP }} "cd /var/www/html/ && git pull && php artisan cache:clear"
-
-
-      
+        - run: ssh -tt {{ .Environment.LAB_USER }}@{{ .Environment.LAB_IP }} "cd /var/www/html/ && git pull && php artisan cache:clear"
