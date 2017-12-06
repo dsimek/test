@@ -18,9 +18,13 @@ jobs:
 
     steps:
         - run: eval $(ssh-agent -s)
+
         - run: mkdir -p ~/.ssh
 
-        - run: ssh-add <(echo "{{ .Environment.LAB_SSH }}")
+        - add_ssh_keys:
+            fingerprints:
+                - "89:7e:33:2f:bb:a8:bf:c1:4b:68:f7:9a:e3:f5:87:4c"
+
 
         - run: echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 
