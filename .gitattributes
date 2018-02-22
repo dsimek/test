@@ -1,1 +1,2 @@
 test.file filter=lfs diff=lfs merge=lfs -text
+test2.file filter=lfs diff=lfs merge=lfs -text
